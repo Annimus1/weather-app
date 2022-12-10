@@ -32,7 +32,34 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <button onClick={fetchWeather}>fetch</button>
+            {/* Overlay */}
+            <div className='absolute top-0 left-0 right-0 bottom-0 bg-black/40 z-[1]'/>
+      {/* Background image */}
+      <Image 
+        src={"https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"} 
+        alt="Weather"
+        fill="true"
+        className='object-cover' 
+      />
+
+      {/* Search */}
+
+      <div className='relative flex justify-between items-center max-w-[500px] w-full m-auto pt-4 text-white z-10'>
+        <form className='flex justify-between items-center w-full m-auto p-3 bg-transparent border border-gray-300 text-white rounded-2xl'>
+        <div >
+          <input 
+            className='bg-transparent border-none text-white focus:outline-none text-2xl'
+            placeholder='Search city' 
+            onChange={(e)=>{setCity(e.target.value)}}
+            />
+          </div>
+            <button 
+              onClick={fetchWeather}
+            >
+              <BsSearch size={25}/>
+            </button>
+        </form>
+      </div>
       
     </div>
   )
