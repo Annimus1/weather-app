@@ -5,6 +5,7 @@ import axios from 'axios';
 import { BsSearch } from 'react-icons/bs';
 import Weather from '../components/Weather';
 import Spinner from '../components/Spinner';
+import Error from '../components/Error';
 
 
 export default function Home() {
@@ -20,9 +21,16 @@ export default function Home() {
 
     setLoading(true);
     
-    axios.get(url).then( (response) => {
-      setWeather(response.data)
-    });
+    axios.get(url)
+    .then( (response) => {
+        setWeather(response.data)
+    })
+    .catch ( (error) => {
+      setWeather({error:true})
+      }
+    );
+
+
     
     setCity("");
     setLoading(false);
@@ -75,6 +83,9 @@ export default function Home() {
 
         {/* Weather */}
         { weather.main && <Weather data={weather} />}
+        
+        {/* Handling Error */}
+        { weather.error && <Error /> }
 
 
       </div>
